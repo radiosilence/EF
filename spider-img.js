@@ -27,7 +27,7 @@ const download = (uri, filename) => {
 const spiderImg = (i, links) => {
   let url = URL.parse(links[i], true);
   if (i === links.length) {
-    console.log("DONE!", Object.keys(posts).length), 'posts');
+    console.log("DONE!", Object.keys(posts).length, 'posts');
     fs.writeFileSync('./posts.json', JSON.stringify(posts));
     return;
   }
