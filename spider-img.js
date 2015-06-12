@@ -5,6 +5,9 @@ import URL from 'url';
 
 const AT = fs.readFileSync('./AT');
 
+if (AT == '') {
+  throw 'No access token!';
+}
 const API = 'https://graph.facebook.com/v2.3/';
 
 const data = JSON.parse(fs.readFileSync('./ef.json'));
@@ -58,7 +61,7 @@ const spiderImg = (i, links) => {
 let posts = {};
 try {
   posts = JSON.parse(fs.readFileSync('./posts.json'));
-} catch () {}
+} catch(err) {}
 
 let urlId = {};
 let links = data
