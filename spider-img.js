@@ -58,7 +58,7 @@ const spiderImg = (i, links) => {
 let posts = {};
 try {
   posts = JSON.parse(fs.readFileSync('./posts.json'));
-} catch {}
+} catch () {}
 
 let urlId = {};
 let links = data
