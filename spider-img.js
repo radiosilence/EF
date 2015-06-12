@@ -26,6 +26,10 @@ const download = (uri, filename) => {
 
 const spiderImg = (i, links) => {
   let url = URL.parse(links[i], true);
+  if (i === links.length) {
+    fs.writeFileSync('./posts.json', JSON.stringify(posts));
+    return;
+  }
   console.log(links[i]);
   request.get(`${API}${url.query.fbid}?access_token=${AT}`, (err, response, body) => {
     let data = JSON.parse(body);
@@ -33,6 +37,7 @@ const spiderImg = (i, links) => {
     if (data && data.images) {
       Promise.all(data.images.map(image => download(image.source, `img/${sha1(image.source)}.jpg`)))
         .then(() => {
+          posts[links[i]] = data;
           spiderImg(++i, links);
         });
     } else {
@@ -40,6 +45,8 @@ const spiderImg = (i, links) => {
     }
   });
 }
+
+let posts = {};
 
 let urlId = {};
 let links = data
