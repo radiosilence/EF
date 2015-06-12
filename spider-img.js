@@ -39,6 +39,7 @@ const spiderImg = (i, links) => {
       Promise.all(data.images.map(image => download(image.source, `img/${sha1(image.source)}.jpg`)))
         .then(() => {
           posts[links[i]] = data;
+          fs.writeFileSync('./posts.json', JSON.stringify(posts));
           spiderImg(++i, links);
         });
     } else {
