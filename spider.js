@@ -1,7 +1,7 @@
 import rp from 'request-promise';
 import fs from 'fs';
 
-let AT = '';
+const AT = fs.readFileSync('./AT');
 
 let url = 'https://graph.facebook.com/v2.3/745908415421098/feed?_=_';
 

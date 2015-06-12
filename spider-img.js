@@ -3,7 +3,7 @@ import request from 'request';
 import sha1 from 'sha1';
 import URL from 'url';
 
-const AT = '';
+const AT = fs.readFileSync('./AT');
 
 const API = 'https://graph.facebook.com/v2.3/';
 
